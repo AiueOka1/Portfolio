@@ -11,6 +11,57 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.classList.toggle('active');
     sidebar.classList.toggle('active');
     overlay.classList.toggle('active');
+    
+    // Randomize easter egg letter positions when sidebar opens
+    if (sidebar.classList.contains('active')) {
+      randomizeLetterPositions();
+      resetEasterEgg();
+    }
+  };
+  
+  // Function to randomize letter positions
+  const randomizeLetterPositions = () => {
+    const easterLetters = document.querySelectorAll('.easter-letter');
+    const usedPositions = [];
+    
+    easterLetters.forEach(letter => {
+      let top, left;
+      let attempts = 0;
+      
+      // Try to find a position that doesn't overlap with others
+      do {
+        top = 10 + Math.random() * 75; // 10% to 85% from top
+        left = 10 + Math.random() * 75; // 10% to 85% from left
+        attempts++;
+      } while (
+        attempts < 20 && 
+        usedPositions.some(pos => 
+          Math.abs(pos.top - top) < 15 && Math.abs(pos.left - left) < 15
+        )
+      );
+      
+      usedPositions.push({ top, left });
+      letter.style.top = `${top}%`;
+      letter.style.left = `${left}%`;
+    });
+  };
+  
+  // Function to reset easter egg state
+  const resetEasterEgg = () => {
+    const easterLetters = document.querySelectorAll('.easter-letter');
+    easterLetters.forEach(letter => {
+      letter.classList.remove('discovered', 'revealed');
+    });
+    
+    const secretContainer = document.getElementById('secret-input-container');
+    if (secretContainer) {
+      secretContainer.classList.remove('visible', 'revealed', 'success');
+    }
+    
+    const secretInput = document.getElementById('secret-code');
+    if (secretInput) {
+      secretInput.value = '';
+    }
   };
 
   hamburger.addEventListener('click', toggleSidebar);
@@ -23,7 +74,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const y = e.clientY - rect.top;
     flashlight.style.setProperty('--mouse-x', `${x}px`);
     flashlight.style.setProperty('--mouse-y', `${y}px`);
+    
+    // Update easter egg letters - only show when flashlight is directly on them
+    const easterLetters = document.querySelectorAll('.easter-letter');
+    easterLetters.forEach(letter => {
+      // Get letter position relative to sidebar
+      const letterRect = letter.getBoundingClientRect();
+      const letterCenterX = letterRect.left - rect.left + letterRect.width / 2;
+      const letterCenterY = letterRect.top - rect.top + letterRect.height / 2;
+      
+      // Calculate distance from mouse to letter center
+      const distance = Math.sqrt(Math.pow(x - letterCenterX, 2) + Math.pow(y - letterCenterY, 2));
+      
+      // Only reveal if within 80px radius (tight flashlight beam)
+      if (distance < 80) {
+        letter.classList.add('revealed');
+        letter.classList.add('discovered'); // Mark as found
+      } else {
+        letter.classList.remove('revealed'); // Hide when flashlight moves away
+      }
+    });
+    
+    // Check if all letters have been discovered - show secret input
+    const secretContainer = document.getElementById('secret-input-container');
+    const allDiscovered = document.querySelectorAll('.easter-letter.discovered').length === 5;
+    
+    if (allDiscovered && secretContainer) {
+      secretContainer.classList.add('visible');
+      
+      // Check if flashlight is near the input box (at bottom center)
+      const inputRect = secretContainer.getBoundingClientRect();
+      const inputCenterX = inputRect.left - rect.left + inputRect.width / 2;
+      const inputCenterY = inputRect.top - rect.top + inputRect.height / 2;
+      const inputDistance = Math.sqrt(Math.pow(x - inputCenterX, 2) + Math.pow(y - inputCenterY, 2));
+      
+      if (inputDistance < 100) {
+        secretContainer.classList.add('revealed');
+      } else {
+        secretContainer.classList.remove('revealed');
+      }
+    }
   });
+
+  // Easter Egg Secret Code Handler
+  const secretCodeInput = document.getElementById('secret-code');
+  
+  const checkSecretCode = () => {
+    const code = secretCodeInput.value.toLowerCase();
+    if (code === 'spics') {
+      const container = document.getElementById('secret-input-container');
+      container.classList.add('success');
+      
+      // Redirect after a short delay
+      setTimeout(() => {
+        window.location.href = 'https://www.instagram.com/spixchu/'; // Change this to your secret link!
+      }, 800);
+    }
+  };
+  
+  if (secretCodeInput) {
+    // Check on Enter key press
+    secretCodeInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        checkSecretCode();
+      }
+    });
+  }
 
   // Close sidebar when clicking a link
   const sidebarLinks = document.querySelectorAll('.sidebar-nav a');

@@ -153,6 +153,98 @@ p {
     opacity: 1;
 }
 
+/* ===============================
+   EASTER EGG LETTERS
+================================ */
+.easter-letter {
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(255, 215, 0, 0);
+    pointer-events: none;
+    z-index: 999;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    user-select: none;
+}
+
+/* Letter glows when flashlight is near - controlled by JS */
+.easter-letter.revealed {
+    color: rgba(255, 215, 0, 0.9);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Secret Input Container */
+.secret-input-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1001;
+}
+
+/* Only show when flashlight is near AND all letters discovered */
+.secret-input-container.visible.revealed {
+    opacity: 1;
+    visibility: visible;
+}
+
+.secret-input-container input {
+    width: 100px;
+    padding: 8px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: #fff;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.secret-input-container input:focus {
+    border-color: gold;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.secret-input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+    text-transform: none;
+    font-size: 0.75rem;
+}
+
+.secret-hint {
+    font-size: 0.65rem;
+    color: rgba(255, 215, 0, 0.6);
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Success animation */
+.secret-input-container.success input {
+    border-color: #00ff00;
+    background: rgba(0, 255, 0, 0.2);
+}
+
+.secret-input-container.success {
+    animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+}
+
 .sidebar.active {
     right: 0;
 }
