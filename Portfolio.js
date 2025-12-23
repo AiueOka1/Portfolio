@@ -24,25 +24,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const easterLetters = document.querySelectorAll('.easter-letter');
     const usedPositions = [];
     
-    easterLetters.forEach(letter => {
+    // Define safe zones (avoid nav buttons in center: roughly 30-70% horizontally, 25-65% vertically)
+    const getSafePosition = () => {
       let top, left;
+      
+      // Randomly choose a zone: top area, bottom area, left edge, or right edge
+      const zone = Math.floor(Math.random() * 4);
+      
+      switch(zone) {
+        case 0: // Top area (above nav)
+          top = 5 + Math.random() * 18; // 5% to 23%
+          left = 10 + Math.random() * 80; // 10% to 90%
+          break;
+        case 1: // Bottom area (below nav, above social)
+          top = 68 + Math.random() * 15; // 68% to 83%
+          left = 10 + Math.random() * 80; // 10% to 90%
+          break;
+        case 2: // Left edge
+          top = 25 + Math.random() * 40; // 25% to 65%
+          left = 5 + Math.random() * 20; // 5% to 25%
+          break;
+        case 3: // Right edge
+          top = 25 + Math.random() * 40; // 25% to 65%
+          left = 75 + Math.random() * 20; // 75% to 95%
+          break;
+      }
+      
+      return { top, left };
+    };
+    
+    easterLetters.forEach(letter => {
+      let position;
       let attempts = 0;
       
       // Try to find a position that doesn't overlap with others
       do {
-        top = 10 + Math.random() * 75; // 10% to 85% from top
-        left = 10 + Math.random() * 75; // 10% to 85% from left
+        position = getSafePosition();
         attempts++;
       } while (
-        attempts < 20 && 
+        attempts < 30 && 
         usedPositions.some(pos => 
-          Math.abs(pos.top - top) < 15 && Math.abs(pos.left - left) < 15
+          Math.abs(pos.top - position.top) < 12 && Math.abs(pos.left - position.left) < 12
         )
       );
       
-      usedPositions.push({ top, left });
-      letter.style.top = `${top}%`;
-      letter.style.left = `${left}%`;
+      usedPositions.push(position);
+      letter.style.top = `${position.top}%`;
+      letter.style.left = `${position.left}%`;
     });
   };
   
@@ -97,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check if all letters have been discovered - show secret input
     const secretContainer = document.getElementById('secret-input-container');
-    const allDiscovered = document.querySelectorAll('.easter-letter.discovered').length === 5;
+    const allDiscovered = document.querySelectorAll('.easter-letter.discovered').length === 4;
     
     if (allDiscovered && secretContainer) {
       secretContainer.classList.add('visible');
@@ -121,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const checkSecretCode = () => {
     const code = secretCodeInput.value.toLowerCase();
-    if (code === 'spics') {
+    if (code === 'spix') {
       const container = document.getElementById('secret-input-container');
       container.classList.add('success');
       
