@@ -35,11 +35,11 @@ p {
 ================================ */
 .marquee {
     position: absolute;
-    top: 70%;
+    top: 65%;
     left: 0;
-    width: 100%;
+    width: 100vw;
     overflow: hidden;
-    z-index: 1;
+    z-index: 5;
     pointer-events: none;
 }
 
@@ -47,14 +47,14 @@ p {
     display: flex;
     gap: 40px;
     white-space: nowrap;
-    animation: marquee 20s linear infinite;
+    animation: marquee 12s linear infinite;
 }
 
 .marquee-content span {
     font-family: 'Playfair Display', serif;
     font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 300;
-    color: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.12);
     text-transform: lowercase;
     letter-spacing: 0.02em;
 }
@@ -307,7 +307,7 @@ nav.navbar li a {
     min-height: 100vh;
     background: transparent;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-left {
@@ -318,7 +318,9 @@ nav.navbar li a {
     flex-direction: column;
     justify-content: center;
     gap: 24px;
-    z-index: 2;
+    z-index: 1;
+    background: transparent;
+    position: relative;
 }
 
 .hero-left .eyebrow {
@@ -398,7 +400,7 @@ nav.navbar li a {
     bottom: 0;
     left: auto;
     width: 65%;
-    z-index: 2;
+    z-index: 10;
     overflow: hidden;
     transition: all 0.4s ease;
 }
@@ -412,7 +414,7 @@ nav.navbar li a {
     background: #fff;
     padding: 8px;
     box-shadow: 0 18px 38px rgba(0,0,0,.12);
-    z-index: 3;
+    z-index: 11;
     transition: all 0.4s ease;
 }
 
@@ -618,6 +620,16 @@ nav.navbar li a {
         min-height: auto;
     }
     
+    /* Hide marquee on tablet/mobile - will reposition */
+    .marquee {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        order: 2; /* Place after hero-left, before hero-right content */
+        padding: 20px 0;
+    }
+    
     .hero-left {
         flex: none;
         max-width: 100%;
@@ -625,6 +637,11 @@ nav.navbar li a {
         padding: 100px 8% 40px;
         text-align: center;
         align-items: center;
+        order: 1;
+    }
+    
+    .hero-right {
+        order: 3;
     }
     
     .hero-title {
@@ -697,6 +714,7 @@ nav.navbar li a {
         display: flex;
         flex-direction: column;
         align-items: center;
+        order: 1;
     }
     
     .hero-title {
@@ -734,6 +752,7 @@ nav.navbar li a {
         flex-direction: column;
         align-items: center;
         padding-bottom: 30px;
+        order: 3;
     }
     
     /* Hide framed card on mobile */
@@ -741,13 +760,14 @@ nav.navbar li a {
         display: none;
     }
     
-    /* Marquee above the big photo */
+    /* Marquee between hero-left and hero-right on mobile */
     .marquee {
         position: relative;
         top: auto;
-        bottom: auto;
-        margin-bottom: 20px;
+        left: auto;
         width: 100%;
+        order: 2;
+        padding: 15px 0;
     }
     
     .marquee-content span {
@@ -857,6 +877,7 @@ nav.navbar li a {
         display: flex;
         flex-direction: column;
         align-items: center;
+        order: 1;
     }
     
     .hero-title {
@@ -899,16 +920,18 @@ nav.navbar li a {
         flex-direction: column;
         align-items: center;
         padding-bottom: 30px;
+        order: 3;
     }
     
-    /* Marquee above the big photo */
+    /* Marquee between hero-left and hero-right */
     .marquee {
         display: block;
         position: relative;
         top: auto;
-        bottom: auto;
-        margin-bottom: 15px;
+        left: auto;
         width: 100%;
+        order: 2;
+        padding: 10px 0;
     }
     
     .marquee-content span {
