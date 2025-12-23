@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="Portfolio.css">
+    <script src="Portfolio.js" defer></script>
+    <script src="https://kit.fontawesome.com/1172a7de46.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Header Brand -->
+    <div class="header-brand">PORTFOLIO</div>
+
+    <!-- Hamburger Button -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span class="line1"></span>
+        <span class="line2"></span>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="flashlight" id="flashlight"></div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <span class="sidebar-brand">Marious</span>
+        <div class="social-media">
+            <a href="https://www.facebook.com/marious.so.3" target="_blank">Facebook</a>
+            <span class="divider">—</span>
+            <a href="https://www.instagram.com/aiueokaa0" target="_blank">Instagram</a>
+            <span class="divider">—</span>
+            <a href="https://github.com/AiueOka1" target="_blank">GitHub</a>
+        </div>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+
+    <div class="container">
+        <main class="main-content" role="main" aria-live="polite">
+            <!-- HERO SECTION -->
+            <div id="hero" class="hero-section">
+                <div class="hero-left">
+                    <h1 class="hero-title">Marious So</h1>
+
+                    <div class="hero-description">
+                        <p>
+                            <span class="line">I'm a developer passionate about turning ideas into clean, user-friendly
+                                applications.</span>
+                            <span class="line">Skilled in both frontend and backend, I focus on creating intuitive
+                                designs, efficient systems,</span>
+                            <span class="line">while continuously learning and improving.</span>
+                        </p>
+
+                        <div class="hero-cta">
+                            <a href="#contact" class="contact-popup-btn">Contact Me</a>
+                            <a href="#projects" class="projects-btn">View Projects</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="right-bg"></div>
+                    
+                    <!-- Marquee -->
+                    <div class="marquee">
+                        <div class="marquee-content">
+                            <span>programming</span>
+                            <span>—</span>
+                            <span>designing</span>
+                            <span>—</span>
+                            <span>electronics</span>
+                            <span>—</span>
+                            <span>gaming</span>
+                            <span>—</span>
+                            <span>programming</span>
+                            <span>—</span>
+                            <span>designing</span>
+                            <span>—</span>
+                            <span>electronics</span>
+                            <span>—</span>
+                            <span>gaming</span>
+                            <span>—</span>
+                        </div>
+                    </div>
+
+                    <!-- BIG IMAGE (SLIDER) -->
+                    <div class="big-photo">
+                        <div class="slider">
+                            <img alt="Main portrait">
+                            <img alt="Main portrait">
+                        </div>
+                        <div class="slider-controls">
+                            <div class="page-number">
+                                <span class="current">01</span>
+                                <span class="separator">/</span>
+                                <span class="total">03</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SMALL FRAMED IMAGE (SLIDER) -->
+                    <div class="framed-card">
+                        <div class="frame-inner">
+                            <div class="slider">
+                                <img alt="Secondary portrait">
+                                <img alt="Secondary portrait">
+                            </div>
+                        </div>
+                        <!-- Slide Button -->
+                        <button class="slide-btn" id="slide-btn" aria-label="Next slide">
+                            <span class="arrow-icon">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT SECTION -->
+            <section id="about">
+                <div id="tab-content">
+                    <h1>What I'm Doing</h1>
+                    <div class="skills">
+                        <div class="WebDevelopment">
+                            <i class="fa-solid fa-window-maximize"></i>
+                            <h2>Web Development</h2>
+                            <p>I specialize in building responsive and user-friendly websites using HTML, CSS, and
+                                JavaScript. I
+                                enjoy creating seamless user experiences and bringing designs to life.</p>
+                        </div>
+                        <div class="AppDevelopment">
+                            <i class="fa-solid fa-tablet-screen-button"></i>
+                            <h2>App Development</h2>
+                            <p>I have experience in developing mobile applications for Android App. I focus on creating
+                                intuitive
+                                interfaces and ensuring optimal performance.</p>
+                        </div>
+                        <div class="Electronics">
+                            <i class="fa-solid fa-microchip"></i>
+                            <h2>Electronics</h2>
+                            <p>I have a keen interest in electronics and basic knowledge about microcontrollers and
+                                other hardware
+                                components. I love experimenting with new technologies and building innovative
+                                solutions.</p>
+                        </div>
+                        <div class="Curious">
+                            <i class="fa-solid fa-lines-leaning"></i>
+                            <h2>Stay Curious</h2>
+                            <p>At the end of the day, creating and developing software is more than just a hobby for me.
+                                I have an insatiable desire to develop quality code that promotes usability and
+                                efficiency while being visually exciting. Make sure to check back in soon for updated
+                                projects of mine!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS SECTION -->
+            <section id="projects">
+                <div id="tab-content">
+                    <h1>Projects</h1>
+                    <div class="projects-slideshow-container">
+                        <div class="projects-slideshow">
+                            <!-- Project 1: GPS Tracker -->
+                            <div class="project-card slide">
+                                <span class="project-badge">01</span>
+                                <div class="project-image-wrapper">
+                                    <img src="assets/gps-tracker.jpeg" alt="GPS Tracker" class="project-image">
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">GPS Tracker</h3>
+                                    <p class="project-description">An IoT-based GPS tracking device built with ESP8266 microcontroller. 
+                                        Features real-time location tracking, low power consumption, and wireless connectivity 
+                                        for monitoring assets or vehicles remotely.</p>
+                                    <div class="tech-stack">
+                                        <span class="tech-pill">ESP8266</span>
+                                        <span class="tech-pill">Arduino</span>
+                                        <span class="tech-pill">GPS Module</span>
+                                        <span class="tech-pill">IoT</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="#" class="project-link primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                                        <a href="#" class="project-link secondary"><i class="fa-brands fa-github"></i> Source</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 2: Geofencing Application -->
+                            <div class="project-card slide">
+                                <span class="project-badge">02</span>
+                                <div class="project-image-wrapper">
+                                    <img src="assets/geofencing application.png" alt="Geofencing Application" class="project-image">
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">Geofencing Application</h3>
+                                    <p class="project-description">A location-based application that creates virtual boundaries 
+                                        and triggers alerts when devices enter or exit designated areas. Perfect for fleet management, 
+                                        child safety, and asset tracking with customizable zones.</p>
+                                    <div class="tech-stack">
+                                        <span class="tech-pill">JavaScript</span>
+                                        <span class="tech-pill">Google Maps API</span>
+                                        <span class="tech-pill">Geolocation</span>
+                                        <span class="tech-pill">Node.js</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="#" class="project-link primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                                        <a href="#" class="project-link secondary"><i class="fa-brands fa-github"></i> Source</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 3 -->
+                            <div class="project-card slide">
+                                <span class="project-badge">03</span>
+                                <div class="project-image-wrapper">
+                                    <img src="https://placehold.co/600x400/232946/FFFFFF" alt="Project 3" class="project-image">
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">Coming Soon</h3>
+                                    <p class="project-description">More exciting projects are in development. Stay tuned for 
+                                        upcoming work showcasing skills in web development, electronics, and software engineering.</p>
+                                    <div class="tech-stack">
+                                        <span class="tech-pill">TBD</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="#" class="project-link primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                                        <a href="#" class="project-link secondary"><i class="fa-brands fa-github"></i> Source</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Click hint - moved outside slideshow for better positioning -->
+                        <div class="click-hint">
+                            <i class="fa-solid fa-hand-pointer"></i> Click to browse projects
+                        </div>
+                        
+                        <!-- Close button -->
+                        <button class="slideshow-close" aria-label="Close slideshow">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        
+                        <!-- Navigation arrows -->
+                        <button class="slideshow-nav slideshow-prev" aria-label="Previous project">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="slideshow-nav slideshow-next" aria-label="Next project">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        
+                        <!-- Indicator dots -->
+                        <div class="slideshow-indicators">
+                            <span class="indicator" data-slide="0" aria-label="Go to project 1"></span>
+                            <span class="indicator" data-slide="1" aria-label="Go to project 2"></span>
+                            <span class="indicator" data-slide="2" aria-label="Go to project 3"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact">
+                <div id="tab-content">
+                    <h1>Contact</h1>
+                    <div class="contact-card">
+                        <form id="contact-form">
+                            <label for="contact-name">Name:</label>
+                            <input type="text" id="contact-name" name="name" required>
+
+                            <label for="contact-email">Email:</label>
+                            <input type="email" id="contact-email" name="email" required>
+
+                            <label for="contact-message">Message:</label>
+                            <textarea id="contact-message" name="message" rows="5" required></textarea>
+
+                            <button type="submit" class="contact-popup-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
