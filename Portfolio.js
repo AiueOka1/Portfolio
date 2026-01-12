@@ -216,17 +216,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initial images
+  // Big shows current (index 0), Small shows next (index 1)
   bigImgs[0].src = images[0];
-  bigImgs[1].src = images[1];
 
   smallImgs[0].src = images[1];
-  smallImgs[1].src = images[2];
 
   const slide = () => {
-    const next = (index + 1) % images.length;
+    const next = (index + 2) % images.length;
+    const nextNext = (next + 1) % images.length;
 
+    // Prepare next images
     bigImgs[1].src = images[next];
-    smallImgs[1].src = images[(next + 1) % images.length];
+    smallImgs[1].src = images[nextNext];
 
     bigSlider.style.transition = 'transform 1s ease-in-out';
     smallSlider.style.transition = 'transform 1s ease-in-out';
@@ -238,8 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
       bigSlider.style.transition = 'none';
       smallSlider.style.transition = 'none';
 
+      // Reset positions and update first images
       bigImgs[0].src = images[next];
-      smallImgs[0].src = images[(next + 1) % images.length];
+      smallImgs[0].src = images[nextNext];
 
       bigSlider.style.transform = 'translateX(0)';
       smallSlider.style.transform = 'translateX(0)';
@@ -262,7 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Slide to previous image (slides right)
   const slidePrev = () => {
-    const prev = (index - 1 + images.length) % images.length;
+    const prev = (index - 2 + images.length) % images.length;
+    const prevNext = (prev + 1) % images.length;
 
     // Set up images: put previous image on the left
     bigSlider.style.transition = 'none';
@@ -271,9 +274,10 @@ document.addEventListener('DOMContentLoaded', () => {
     bigSlider.style.transform = 'translateX(-50%)';
     smallSlider.style.transform = 'translateX(-50%)';
     
+    // Big shows prev, Small shows next of prev
     bigImgs[0].src = images[prev];
     bigImgs[1].src = images[index];
-    smallImgs[0].src = images[index];
+    smallImgs[0].src = images[prevNext];
     smallImgs[1].src = images[(index + 1) % images.length];
 
     // Force reflow
